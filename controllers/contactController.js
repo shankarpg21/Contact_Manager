@@ -22,11 +22,6 @@ const createContact=asyncHandler(async(req,res)=>{
         res.status(400);
         throw new Error("All fields are mandatory");
     }
-    const avail=Contact.findOne({"name":req.params.name})
-    if(avail){
-        res.status(400);
-        throw new Error("Contact already exists")
-    }
     const newContact=await Contact.create({
         name,email,Phone,user_id:req.user.id
     })
